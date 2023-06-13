@@ -54,6 +54,7 @@ const llenarFilaTabla = (pelicula) => {
     const tr = document.createElement('tr');
     //Para luego poder seleccionarlo para el detalle
     tr.setAttribute('id',pelicula.imdbID); 
+    tr.style.cursor = 'pointer';
     tr.addEventListener('click', (event) => {
         crearPaginaDetallePelicula(event.currentTarget.id);
     });

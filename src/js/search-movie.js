@@ -1,7 +1,11 @@
+import { Modal } from 'bootstrap';
+
 import { buscaPeliPorTitulo, detalleDePelicula } from "./movie-api";
+
 
 const body = document.body;
 let tablaBody;
+
 
 export const crearHTML = () => {
     const html = `
@@ -44,6 +48,7 @@ export const crearHTML = () => {
     tablaBody = document.querySelector('tbody');
 }
 
+
 const llenarFilaTabla = (pelicula) => {
     const html = `
     <td scope="col">${pelicula.Title}</td>
@@ -62,6 +67,7 @@ const llenarFilaTabla = (pelicula) => {
     tablaBody.appendChild(tr);
 }
 
+
 const darMensajeSinResultados = () => {
     const html = 'No se encontraron resultados';
     const p = document.createElement('p');
@@ -74,6 +80,7 @@ const darMensajeSinResultados = () => {
         divPaginacion.innerHTML = '';
     }
 }
+
 
 const crearBotonesPaginacion = (totalPaginas, pelicula, paginaActual) => {
     const divPaginacion = document.getElementById('paginacion');
@@ -101,77 +108,79 @@ const crearBotonesPaginacion = (totalPaginas, pelicula, paginaActual) => {
     }
 }
 
+
 const crearPaginaDetallePelicula = async (imdbID) => {
     const objPelicula = await detalleDePelicula(imdbID);
     if(objPelicula.Poster === 'N/A' || objPelicula.Poster === ''){
         objPelicula.Poster = 'https://cdn.pixabay.com/photo/2015/10/30/12/14/search-1013910_1280.jpg'
     };
-    //console.log('DETALLEDEPELICULA: ',objPelicula);
-    const html = `
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>${objPelicula.Title}</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    const modalContent = `
     <style>
-        .card {
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 3px 20px rgba(0,0,0,0.3);
+        .modal-title-custom {
+            font-size: 2rem;
         }
         .card-img-right {
-            object-fit: cover;
-            width: 100%;
-            height: 100%;
+            max-width: 90%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
         }
     </style>
-    </head>
-    <body>
-        <div class="container py-5">
-            <div class="card mx-auto" style="max-width: 1200px;">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title modal-title-custom">${objPelicula.Title} (${objPelicula.Year})</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
                 <div class="row no-gutters">
-                    <div class="col-md-7">
-                        <div class="card-body">
-                            <h1 class="card-title mb-4">${objPelicula.Title} (${objPelicula.Year})</h1>
-                            <p class="card-text"><strong>Calificado:</strong> ${objPelicula.Rated}</p>
-                            <p class="card-text"><strong>Publicado:</strong> ${objPelicula.Released}</p>
-                            <p class="card-text"><strong>Duración:</strong> ${objPelicula.Runtime}</p>
-                            <p class="card-text"><strong>Género:</strong> ${objPelicula.Genre}</p>
-                            <p class="card-text"><strong>Director:</strong> ${objPelicula.Director}</p>
-                            <p class="card-text"><strong>Actores:</strong> ${objPelicula.Actors}</p>
-                            <p class="card-text"><strong>Idioma:</strong> ${objPelicula.Language}</p>
-                            <p class="card-text"><strong>Pais:</strong> ${objPelicula.Country}</p>
-                            <p class="card-text"><strong>Premios:</strong> ${objPelicula.Awards}</p>
-                            <p class="card-text"><strong>IMDB Rating:</strong> ${objPelicula.imdbRating}</p>
-                            <p class="card-text"><strong>IMDB Votes:</strong> ${objPelicula.imdbVotes}</p>
-                            <p class="card-text"><strong>Recaudación:</strong> ${objPelicula.BoxOffice}</p>
-                            <p class="card-text"><strong>Trama:</strong> ${objPelicula.Plot}</p>
-                        </div>
+                    <div class="col-lg-6">
+                        <p><strong>Calificado:</strong> ${objPelicula.Rated}</p>
+                        <p><strong>Publicado:</strong> ${objPelicula.Released}</p>
+                        <p><strong>Duración:</strong> ${objPelicula.Runtime}</p>
+                        <p><strong>Género:</strong> ${objPelicula.Genre}</p>
+                        <p><strong>Director:</strong> ${objPelicula.Director}</p>
+                        <p><strong>Actores:</strong> ${objPelicula.Actors}</p>
+                        <p><strong>Idioma:</strong> ${objPelicula.Language}</p>
+                        <p><strong>Pais:</strong> ${objPelicula.Country}</p>
+                        <p><strong>Premios:</strong> ${objPelicula.Awards}</p>
+                        <p><strong>IMDB Rating:</strong> ${objPelicula.imdbRating}</p>
+                        <p><strong>IMDB Votes:</strong> ${objPelicula.imdbVotes}</p>
+                        <p><strong>Recaudación:</strong> ${objPelicula.BoxOffice}</p>
+                        <p><strong>Trama:</strong> ${objPelicula.Plot}</p>
                     </div>
-                    <div class="col-md-5 d-flex justify-content-center align-items-center">
-                        <img class="card-img-right"
-                         src="${objPelicula.Poster}" alt="Poster">
+                    <div class="col-lg-6 d-flex justify-content-center align-items-center">
+                        <img class="img-fluid" src="${objPelicula.Poster}" alt="Poster">
                     </div>
                 </div>
             </div>
-            <div class="row no-gutters d-flex justify-content-center p-3">
-                <button class="btn btn-secondary w-25" id="close-button">Cerrar pestaña</button>
+            <div class="modal-footer d-flex justify-content-center">
+                <button type="button" class="btn btn-secondary w-25" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
-        <script>
-            document.getElementById('close-button').addEventListener('click', function() {
-                window.close();
-            });
-        </script>
-    </body>
-    </html>
-    `;
-    const newTab = window.open();
-    newTab.document.write(html);
-}
+    </div>
+
+            `;
+        
+            // Seleccionamos el modal, si no exite lo creamos
+            let modal = document.getElementById('detallePeliculaModal');
+            if (!modal) {
+                modal = document.createElement('div');
+                modal.id = 'detallePeliculaModal';
+                modal.classList.add('modal');
+                modal.tabIndex = -1;
+                modal.setAttribute('aria-hidden', 'true');
+                document.body.appendChild(modal);
+            }
+        
+            //Actualiza modal y lo pinta
+            modal.innerHTML = modalContent;
+            let myModal = new Modal(modal);
+            myModal.show();
+        }
+
 
 export const init = async(pelicula, pagina=1) => {
     const data = await buscaPeliPorTitulo(pelicula, pagina);

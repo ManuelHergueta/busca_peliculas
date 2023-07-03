@@ -1,5 +1,17 @@
 # Buscador de películas.
 
+## Tabla de Contenidos
+
+- [Descripción](#descripcion)
+- [Demo en Vivo](#demo-en-vivo)
+- [Tecnologías Utilizadas](#tecnologías-utilizadas)
+- [Cómo Instalar](#cómo-instalar)
+- [Cómo Usar](#cómo-usar)
+- [Licencia](#licencia)
+- [Contacto](#contacto)
+
+## Descripción
+
 Este es un ejemplo de como consumir una API pública y mostrar la información obtenida. Para ello usamos la API pública: [API OMDb](https://www.omdbapi.com).
 
 Esta aplicación hace dos tipos de peticiones;
@@ -7,19 +19,14 @@ Esta aplicación hace dos tipos de peticiones;
 2. Detalle de la película seleccionada.
 
 La API OMDb es un servicio web RESTful que obtiene información de peliculas, todos los contenidos e imágenes en el sitio son aportados y mantenidos por sus usuarios. 
-Esta aplicación te devuelve los resultados de la búsqueda en páginas con 10 resultados cada una. La paginación es dinámica y tiene botones para ir al principio o al final. Se puede hacer click sobre uno de los resultados, lo que abrirá un modal con todos los detalles de la película, incluyendo una imágen de su cartel (si no tuviera, muestra una imagen genérica).
+
+Esta aplicación te devuelve los resultados de la búsqueda en páginas con 10 resultados cada una. La paginación es dinámica y tiene botones para ir al principio o al final. 
+
+Se puede hacer click sobre uno de los resultados, lo que abrirá un modal con todos los detalles de la película, incluyendo una imágen de su cartel (si no tuviera, muestra una imagen genérica).
 
 ![Listado de resultados](./assets/Listado.png)
+
 ![Detalle de la película](./assets/Detalle.png)
-
-## Tabla de Contenidos
-
-- [Demo en Vivo](#demo-en-vivo)
-- [Tecnologías Utilizadas](#tecnologías-utilizadas)
-- [Cómo Instalar](#cómo-instalar)
-- [Cómo Usar](#cómo-usar)
-- [Licencia](#licencia)
-- [Contacto](#contacto)
 
 ## Demo en Vivo
 

@@ -89,6 +89,22 @@ const crearBotonesPaginacion = (totalPaginas, pelicula, paginaActual) => {
     let inicio = Math.max(1, paginaActual - Math.floor(botonesAVer/2));
     let fin = Math.min(totalPaginas, inicio + botonesAVer - 1);
     inicio = Math.max(1, fin - botonesAVer + 1);
+
+    //Botón ir a inicio paginación
+    const liInicio = document.createElement('li');
+    liInicio.className = 'page-item';
+    liInicio.style.marginRight = '15px';
+    const aInicio = document.createElement('a');
+    aInicio.className = 'page-link';
+    aInicio.href = '#';
+    aInicio.textContent = '<';
+    aInicio.addEventListener('click', (e) => {
+        e.preventDefault();
+        init(pelicula, 1);
+    });
+    liInicio.appendChild(aInicio);
+    divPaginacion.appendChild(liInicio); // agregar al inicio
+
     for (let i = inicio; i <= fin; i++) {
         const li = document.createElement('li');
         li.className = 'page-item';
@@ -106,6 +122,21 @@ const crearBotonesPaginacion = (totalPaginas, pelicula, paginaActual) => {
         li.appendChild(a);
         divPaginacion.appendChild(li);
     }
+
+    // Botón para ir al final
+    const liFin = document.createElement('li');
+    liFin.className = 'page-item';
+    liFin.style.marginLeft = '15px';
+    const aFin = document.createElement('a');
+    aFin.className = 'page-link';
+    aFin.href = '#';
+    aFin.textContent = '>';
+    aFin.addEventListener('click', (e) => {
+        e.preventDefault();
+        init(pelicula, totalPaginas);
+    });
+    liFin.appendChild(aFin);
+    divPaginacion.appendChild(liFin); // agregar al final
 }
 
 

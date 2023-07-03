@@ -1,6 +1,6 @@
 # Buscador de películas.
 
-Este es un ejemplo de como consumir una API pública y mostrar la información obtenida. Para ello usamos la API pública: [API OMDb](www.omdbapi.com).
+Este es un ejemplo de como consumir una API pública y mostrar la información obtenida. Para ello usamos la API pública: [API OMDb](https://www.omdbapi.com).
 
 Esta aplicación hace dos tipos de peticiones;
 1. Búqueda de películas por título.

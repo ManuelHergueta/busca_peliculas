@@ -65,4 +65,4 @@ Si te ha gustado esta aplicación y tienes alguna pregunta o sugerencia, puedes 
 Estoy abierto a nuevas oportunidades y a recibir comentarios sobre mis proyectos.
 
 ---
-© 2023 Manuel Hergueta. Todos los derechos reservados.
+© 2024 Manuel Hergueta. Todos los derechos reservados.
